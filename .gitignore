@@ -1,5 +1,5 @@
 secrets.py
-
+*.html
 
 # Created by https://www.gitignore.io/api/vim,venv,python
 # Edit at https://www.gitignore.io/?templates=vim,venv,python
