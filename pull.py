@@ -1,7 +1,7 @@
 from config import api_url
 from secrets import api_key
 import requests
-from bs4 import BeautifulSoup
+from markdownify import markdownify as md
 
 class Guardian_request():
     def __init__(self, api_url, api_key):
@@ -21,14 +21,14 @@ class Guardian_request():
     def article_to_file(self):
         i = 0
         for article in self.articles:
-            with open(f"{i}.html", "w+") as f:
-                f.write(f"<H1>{article}</H1>")
+            with open(f"{i}.md", "w+") as f:
+                f.write(f"## {article}")
                 f.write(self.articles[article])
                 i = i + 1
 
     def clean_article(self, html):
-        s = BeautifulSoup(html, 'html.parser')
-        return s.prettify()
+        s = md(html, strip=['a'])
+        return s
 
 g = Guardian_request(api_url, api_key)
 g.get_latest()
